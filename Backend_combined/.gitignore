@@ -1,0 +1,21 @@
+# Node.js
+node_modules/
+.env
+package-lock.json
+
+# Python
+__pycache__/
+venv310/
+*.pyc
+*.pyo
+*.pyd
+
+# Uploads & models
+uploads/
+
+
+# OS
+.DS_Store
+
+# Logs
+*.log

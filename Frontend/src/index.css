@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html, body {
+  overflow-x: hidden; /* Hide horizontal scroll */
+  overflow-y: auto;   /* Allow vertical scroll */
+  height: auto;       /* Don't fix height */
+}
+
+#root {
+  min-height: 100vh; /* Instead of height: 100vh */
+}
