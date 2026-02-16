@@ -17,7 +17,7 @@ app = FastAPI()
 # CORS (for React frontend)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -282,7 +282,8 @@ def list_uploaded_images():
                 file_info.append({
                     "filename": filename,
                     "size": os.path.getsize(file_path),
-                    "url": f"http://localhost:8000/image/{filename}"
+                    #"url": f"http://localhost:8000/image/{filename}"
+                    "url": f"/image/{filename}"
                 })
         
         return {
