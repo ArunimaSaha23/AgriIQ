@@ -4,3 +4,5 @@ onnxruntime
 numpy
 pillow
 python-multipart
+pymongo[srv]
+python-dotenv
