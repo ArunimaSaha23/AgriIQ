@@ -48,11 +48,20 @@ export default function FeatureCard() {
     formData.append('file', selectedImage);
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:8000/predict', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
+      // const response = await axios.post('http://localhost:8000/predict', formData, {
+      //   headers: {
+      //     'Content-Type': 'multipart/form-data'
+      //   }
+      // });
+      const response = await axios.post(
+        `${import.meta.env.VITE_ML_API_URL}/predict`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
         }
-      });
+      );
       setPrediction(response.data); // { predicted_class, confidence, predicted_index }
     } catch (error) {
       console.error('Prediction error:', error);
@@ -95,7 +104,7 @@ export default function FeatureCard() {
 
             {/* Diagnosis Card */}
             <div className="flex flex-row items-center text-center px-6 border-r border-gray-300"
-            onClick={goToSegmemt}>
+              onClick={goToSegmemt}>
               <img src={seeDiagnosis} alt="See Diagnosis" className="w-16 h-16 mr-4" />
               <div className="text-left">
                 <p className="font-semibold text-gray-800 mb-1">Full Plant Segmentation</p>
@@ -157,8 +166,8 @@ export default function FeatureCard() {
               <div className="text-center mb-4">
                 <button
                   className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 ${loading
-                      ? 'bg-gray-400 cursor-not-allowed text-white'
-                      : 'bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white shadow-lg hover:shadow-xl'
+                    ? 'bg-gray-400 cursor-not-allowed text-white'
+                    : 'bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white shadow-lg hover:shadow-xl'
                     }`}
                   onClick={handlePredict}
                   disabled={loading}

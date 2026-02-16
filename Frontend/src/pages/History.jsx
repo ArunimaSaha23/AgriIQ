@@ -9,7 +9,7 @@ const CropHealthHistory = () => {
   const navigate = useNavigate();
   
   useEffect(() => {
-    fetch("http://localhost:8000/history")
+    fetch(`${import.meta.env.VITE_ML_API_URL}/history`)
       .then(res => res.json())
       .then(data => {
         console.log("Fetched reports:", data);
@@ -20,7 +20,7 @@ const CropHealthHistory = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`http://localhost:8000/report/${id}`, {
+      fetch(`${import.meta.env.VITE_ML_API_URL}/report/${id}`, {
         method: 'DELETE',
       });
       const data = await res.json();
@@ -43,7 +43,7 @@ const CropHealthHistory = () => {
 
     // Try to use the new image_filename field first
     if (report.image_filename) {
-      const url = `http://localhost:8000/image/${report.image_filename}`;
+      const url = `${import.meta.env.VITE_ML_API_URL}/image/${report.image_filename}`;
       console.log(`Using image_filename: ${report.image_filename} -> ${url}`);
       return url;
     }
@@ -52,7 +52,7 @@ const CropHealthHistory = () => {
     if (report.image_path) {
       const filename = report.image_path.split('/').pop() || report.image_path.split('\\').pop();
       if (filename) {
-        const url = `http://localhost:8000/image/${filename}`;
+        const url = `${import.meta.env.VITE_ML_API_URL}/image/${filename}`;
         console.log(`Using image_path: ${report.image_path} -> ${url}`);
         return url;
       }
@@ -77,7 +77,8 @@ const CropHealthHistory = () => {
   // ✅ Test image connectivity function
   const testImageConnectivity = async () => {
     try {
-      const response = await fetch('http://localhost:8000/debug/images');
+      fetch(`${import.meta.env.VITE_ML_API_URL}/debug/images`);
+
       const data = await response.json();
       console.log('Available images:', data);
     } catch (err) {

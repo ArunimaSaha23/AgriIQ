@@ -11,7 +11,7 @@ const Report = () => {
   const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/report/${id}`)
+    fetch(`${import.meta.env.VITE_ML_API_URL}/report/${id}`)
       .then(res => res.json())
       .then(data => {
         setReport(data);
@@ -27,7 +27,7 @@ const Report = () => {
   const handleSave = async () => {
     setIsUpdating(true);
     try {
-      const response = await fetch(`http://localhost:8000/report/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_ML_API_URL}/report/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
