@@ -48,11 +48,6 @@ export default function FeatureCard() {
     formData.append('file', selectedImage);
     setLoading(true);
     try {
-      // const response = await axios.post('http://localhost:8000/predict', formData, {
-      //   headers: {
-      //     'Content-Type': 'multipart/form-data'
-      //   }
-      // });
       const response = await axios.post(
         `${import.meta.env.VITE_ML_API_URL}/predict`,
         formData,
@@ -114,7 +109,7 @@ export default function FeatureCard() {
 
             {/* Medicine Card */}
             <div className="flex flex-row items-center text-center px-6">
-              <img src={three} alt="Get Medicine" className="w-20 h-20 mr-4" />
+              <img src={three} alt="Get Medicine" className="w-20 h-20 mr-4 ml-2" />
               <div className="text-left">
                 <p className="font-semibold text-gray-800 mb-1">Get Medicine</p>
                 <p className="text-sm text-gray-500">Find Your Fix.</p>

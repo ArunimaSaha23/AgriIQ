@@ -34,15 +34,21 @@ export default function SignUp() {
     });
   };
 
-  const handleSubmit = async () => {
-    setIsLoading(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      console.log('Sign up attempt:', formData);
-    }, 2000);
-  };
+ const handleSubmit = async () => {
+  setIsLoading(true);
+
+  try {
+    // TODO: Replace this with your actual API call later
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    console.log("Sign up attempt:", formData);
+    // navigate("/dashboard");   // optional
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 flex items-center justify-center p-4">
@@ -205,19 +211,22 @@ export default function SignUp() {
 
             {/* Sign Up Button */}
             <button
-              onClick={handleSubmit}
-              disabled={isLoading}
-              className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isLoading ? (
-                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-              ) : (
-                <>
-                  <span>Create Account</span>
-                  <ArrowRight className="w-4 h-4" />
-                </>
-              )}
-            </button>
+  onClick={handleSubmit}
+  disabled={isLoading}
+  className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+>
+  {isLoading ? (
+    <>
+      <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+      <span>Signing up...</span>
+    </>
+  ) : (
+    <>
+      <span>Create Account</span>
+      <ArrowRight className="w-4 h-4" />
+    </>
+  )}
+</button>
           </div>
 
           {/* Divider */}

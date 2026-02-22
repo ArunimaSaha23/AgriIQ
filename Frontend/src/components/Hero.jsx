@@ -10,9 +10,9 @@ function Hero() {
         alt="Background"
         className="absolute top-0 left-0 w-full h-full object-cover brightness-[1.2] -z-10"
       />
-      
-      {/* Feature Card positioned at bottom */}
-      <FeatureCard/> 
+      <div className="-ml-12">
+        <FeatureCard />
+      </div>
     </div>
   );
 }

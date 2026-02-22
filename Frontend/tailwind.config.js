@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        outfit: ["Outfit", "sans-serif"],
+        grace: ["Covered By Your Grace", "cursive"],
+      },
+    },
   },
   plugins: [],
 }
